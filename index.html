@@ -167,6 +167,41 @@ ul.log{margin:0;padding:0}
 .kc .mt{background:var(--surface)}
 .bar{display:flex}
 .bar i.prog{opacity:.4}
+
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:6px 0 14px}
+.how-c{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.how-c p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.how-n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center;font-weight:700}
+.how-t{margin:0 0 8px}
+.cl{display:grid;gap:4px;font-size:.88rem;border-top:1px solid var(--line);padding-top:8px}
+.cl .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700}
+.bar.all{height:10px;border-radius:5px}
+.bar.all i:first-child{background:var(--k)}.bar.all i.prog{background:var(--accent)}
+.ocard .more{border:0;background:none;color:var(--accent);font-weight:700;cursor:pointer;text-align:left;padding:2px 0}
+
+/* koloretsua */
+.lane{--c:#64748b;--cb:#eef1f5;background:var(--cb);border-top:5px solid var(--c)}
+.lane[data-stage=jaso]{--c:#a8700a;--cb:#fdf5df}
+.lane[data-stage=bilera]{--c:#d2603f;--cb:#fcebe5}
+.lane[data-stage=plan]{--c:#5b4fc1;--cb:#edebfb}
+.lane[data-stage=prest]{--c:#2a6fb5;--cb:#e4effa}
+.lane[data-stage=probak]{--c:#0b7a5c;--cb:#e0f3ee}
+.lane[data-stage=azken]{--c:#c0417a;--cb:#fae6ef}
+.lane[data-stage=entregatua]{--c:#3d4a5c;--cb:#e6e9ee}
+.lane-h b{color:var(--c)}
+.lane-h small{background:var(--c);color:#fff;border-radius:99px;padding:1px 9px;font-weight:700}
+.lane .ocard{border-left:5px solid var(--c)}
+.lane .ocard .lbl{color:var(--c)}
+.lane .ocard .more{color:var(--c)}
+.lane .mv button:not(:disabled){background:var(--c);color:#fff;border-color:var(--c)}
+.bar.all{background:#e6e9ee}
+.bar.all i:first-child{background:linear-gradient(90deg,#0b7a5c,#2fb78f)}
+.bar.all i.prog{background:#e0a526;opacity:1}
+.how-c:nth-child(1){background:#fdf5df;border-color:#e0a526}.how-c:nth-child(1) .how-n{background:#e0a526}
+.how-c:nth-child(2){background:#fcebe5;border-color:#d2603f}.how-c:nth-child(2) .how-n{background:#d2603f}
+.how-c:nth-child(3){background:#e0f3ee;border-color:#0b7a5c}.how-c:nth-child(3) .how-n{background:#0b7a5c}
+.how-c p{color:#4a5568}
+.fchip[aria-pressed=true]{background:var(--accent);color:var(--accent-fg)}
 </style>
 </head>
 <body>
@@ -301,8 +336,14 @@ ul.log{margin:0;padding:0}
 
 <section id="view-board" role="tabpanel" aria-labelledby="tab-board" hidden>
   <div class="intro" style="padding-bottom:14px"><h1>Eskaera-taula</h1>
-    <p>Mugitu txartelak fasez fase. Ireki txartel bat bilera, atazak eta erabakiak kudeatzeko.</p>
-    <p style="margin-top:8px"><b>Zergatik hau?</b> Ikasleek Ikas fabrikaren digitalizazioa egiten ikastea nahi dugu, eta taula honetan ikusten dena guztia egiten ikasiko dute: eskaerak jaso eta jarraitu, bilerak eta lanak antolatu, stock-a kontrolatu eta departamentuen arteko koordinazioa digitalizatu, adimen artifizialaren laguntzaz.</p></div>
+    <p>Eskaera bakoitzak bide bera egiten du, eskaera jasotzen denetik produktua entregatu arte. Taula honek erakusten du <b>non dagoen</b> eskaera bakoitza, <b>zein bilera dagoen hurrengo</b> eta <b>zenbat lan dauden eginda</b>.</p></div>
+  <div class="how">
+    <div class="how-c"><span class="how-n">1</span><div><b>Eskaera</b><p>Norbaitek xaboia eskatzen du. Txartel bakoitza eskaera bat da, eta zutabeak bere faseak dira, ezkerretik eskuinera.</p></div></div>
+    <div class="how-c"><span class="how-n">2</span><div><b>Bilerak</b><p>Fase batzuetan departamentu guztiak biltzen dira: hasieran, probetan eta bukaeran. Txartelak hurrengo bilera erakusten du.</p></div></div>
+    <div class="how-c"><span class="how-n">3</span><div><b>Lanak</b><p>Departamentu bakoitzak bere atazak ditu. Barrak lan guztien aurrerapena erakusten du; txartela irekitzean departamentuka ikusten da.</p></div></div>
+  </div>
+  <p class="how-t"><b>Nola erabili:</b> &lsaquo; &rsaquo; botoiekin eskaera hurrengo fasera pasatzen da. "Xehetasunak" botoiarekin bilerak, lanak (Datozenak · Martxan · Eginda) eta erabakiak ikusten dira.</p>
+  <p class="how-t muted"><b>Zergatik hau?</b> Ikasleek Ikas fabrikaren digitalizazioa egiten ikastea nahi dugu, eta taula honetan ikusten dena guztia egiten ikasiko dute: eskaerak jaso eta jarraitu, bilerak eta lanak antolatu, stock-a kontrolatu eta departamentuen arteko koordinazioa digitalizatu, adimen artifizialaren laguntzaz.</p>
   <div class="toolbar">
     <input type="text" id="search" placeholder="Bilatu izena edo kodea" aria-label="Bilatu eskaerak">
     <button class="fchip" id="fLate" aria-pressed="false">Atzeratuta</button>
@@ -479,15 +520,16 @@ function nextMeeting(o){ const i=stageIdx(o.status); return MEETINGS.find(m=>sta
 function cardHTML(o){
   const p=prodOf(o.product), s=sizeOf(p,o.size), i=stageIdx(o.status);
   const nm=nextMeeting(o), mt=nm?getMeet(o,nm.k):null;
-  const rows=Object.entries(DEPTS).map(([k,d])=>{ const n=d.tasks.filter(t=>taskState(o,t.id)===2).length, pg=d.tasks.filter(t=>taskState(o,t.id)===1).length, tot=d.tasks.length;
-    return '<div class="tr" title="'+esc(d.name)+'"><span>'+esc(d.short)+'</span><div class="bar b-'+k+'"><i style="width:'+Math.round(n/tot*100)+'%"></i><i class="prog" style="width:'+Math.round(pg/tot*100)+'%"></i></div><b>'+n+'/'+tot+'</b></div>'; }).join('');
+  let tot=0,done=0,prog=0; Object.values(DEPTS).forEach(d=>d.tasks.forEach(t=>{ tot++; const v=taskState(o,t.id); if(v===2) done++; else if(v===1) prog++; }));
+  const pc=Math.round(done/tot*100), pp=Math.round(prog/tot*100);
   const due=o.due?('<span class="'+(isLate(o)?'late':'')+'">Entrega: '+esc(o.due)+(isLate(o)?' · atzeratuta':'')+'</span>'):'<span></span>';
   return '<div class="ocard" draggable="true" data-id="'+esc(o.id)+'"><div class="code"><span>'+esc(o.id)+'</span>'+(o.demo?'<span class="badge">Adibidea</span>':'')+(o.source==='stock'?'<span class="badge st">Stock</span>':'')+'</div>'
-   +'<div class="osec first"><span class="lbl">Eskaera</span><button class="name" data-open="'+esc(o.id)+'">'+esc(p.name)+' · '+esc(s.label)+'</button>'
-   +'<div class="muted" style="font-size:.86rem">'+o.qty+' ud · '+fmt(totalKg(o))+' kg<br>'+esc(o.name)+(o.group?' · '+esc(o.group):'')+'</div></div>'
-   +'<div class="osec"><span class="lbl">Hurrengo bilera</span>'+(nm?'<div class="mt-line"><b>'+esc(nm.n)+'</b><br><span class="muted">'+esc(fmtWhen(mt&&mt.when))+'</span></div>':'<div class="muted" style="font-size:.86rem">Bilera guztiak eginda</div>')+'</div>'
-   +'<div class="osec"><span class="lbl">Lanak · eginda eta martxan</span><div class="trs">'+rows+'</div></div>'
-   +'<div class="meta">'+due+'<span class="mv"><button data-mv="-1" data-id="'+esc(o.id)+'" aria-label="Aurreko fasea" '+(i===0?'disabled':'')+'>&lsaquo;</button><button data-mv="1" data-id="'+esc(o.id)+'" aria-label="Hurrengo fasea" '+(i===STAGES.length-1?'disabled':'')+'>&rsaquo;</button></span></div></div>';
+   +'<button class="name" data-open="'+esc(o.id)+'">'+esc(p.name)+' · '+esc(s.label)+'</button>'
+   +'<div class="muted" style="font-size:.86rem">'+o.qty+' ud · '+fmt(totalKg(o))+' kg<br>'+esc(o.name)+(o.group?' · '+esc(o.group):'')+'</div>'
+   +'<div class="cl"><span class="lbl">Hurrengo bilera</span>'+(nm?'<b>'+esc(nm.n)+'</b><span class="muted">'+esc(fmtWhen(mt&&mt.when))+'</span>':'<span class="muted">Bilera guztiak eginda</span>')+'</div>'
+   +'<div class="cl"><span class="lbl">Lanak</span><div class="bar all"><i style="width:'+pc+'%"></i><i class="prog" style="width:'+pp+'%"></i></div><span class="muted">'+done+'/'+tot+' eginda'+(prog?' · '+prog+' martxan':'')+'</span></div>'
+   +'<div class="meta">'+due+'<span class="mv"><button data-mv="-1" data-id="'+esc(o.id)+'" aria-label="Aurreko fasea" '+(i===0?'disabled':'')+'>&lsaquo;</button><button data-mv="1" data-id="'+esc(o.id)+'" aria-label="Hurrengo fasea" '+(i===STAGES.length-1?'disabled':'')+'>&rsaquo;</button></span></div>'
+   +'<button class="more" data-open="'+esc(o.id)+'">Xehetasunak &rsaquo;</button></div>';
 }
 function renderBoard(){
   $('board').innerHTML=STAGES.map(st=>{
